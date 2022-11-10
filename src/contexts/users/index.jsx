@@ -9,12 +9,14 @@ export const UsersProvider = ({ children }) => {
   const [ user, setUser ] = useState({});
   const [ isModalVisible, setIsModalVisible ] = useState(false);
   const [refresh, setRefresh ] = useState(false);
+  const [ currentPage, setCurrentPage ] = useState(1);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/users').then((response) => {
-      setListUsers(response.data)
+    axios.get(`http://localhost:3000/users/?_page=${currentPage}&_limit=10`).then((response) => {
+      setListUsers((prevUsers) => [...prevUsers, ...response.data]);
+      console.log(listUsers)
   })
-  }, [refresh]) 
+  }, [refresh, currentPage]) 
 
   return (
     <UsersContext.Provider
@@ -24,7 +26,7 @@ export const UsersProvider = ({ children }) => {
         user, 
         setUser, 
         isModalVisible, 
-        setIsModalVisible, refresh, setRefresh
+        setIsModalVisible, refresh, setRefresh, currentPage, setCurrentPage
       }}
     >
       {children}
@@ -38,7 +40,7 @@ export const useUsers = () => {
   if (!context)
     throw new Error("useUsers must be used within a UsersContext.");
 
-  const { listUsers, setListUsers, user, setUser, isModalVisible, setIsModalVisible, refresh, setRefresh } = context;
+  const { listUsers, setListUsers, user, setUser, isModalVisible, setIsModalVisible, refresh, setRefresh, currentPage, setCurrentPage } = context;
 
   return {
     listUsers, 
@@ -46,7 +48,7 @@ export const useUsers = () => {
     user, 
     setUser, 
     isModalVisible, 
-    setIsModalVisible, refresh, setRefresh
+    setIsModalVisible, refresh, setRefresh, currentPage, setCurrentPage
   };
 };
 

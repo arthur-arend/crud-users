@@ -7,10 +7,17 @@ import { useUsers } from '../../contexts/users';
 function Card(props) {
 
   const { eachUser } = props;
-  const { listUsers, setListUsers, user, setUser, isModalVisible, setIsModalVisible } = useUsers();
+  const { listUsers, setListUsers, user, setUser, isModalVisible, setIsModalVisible, setRefresh, refresh } = useUsers();
+
+  const resolveReq = () => {
+    setRefresh(!refresh)
+  }
 
   const handleDelete = (user) => {
-    axios.delete(`http://localhost:3000/users/${user.id}`)
+    axios.delete(`http://localhost:3000/users/${user.id}`).then((response) => {
+      alert(`Usuário removido`)
+      resolveReq()
+    })
   }
   
   const handleEdit = (user) => {

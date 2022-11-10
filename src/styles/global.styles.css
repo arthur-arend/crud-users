@@ -10,7 +10,6 @@ A couple of things to watch out for:
 - IE: You don't need to fake inline-block with labels and form controls in IE. They function as inline-block.
 - By turning off ::-webkit-search-decoration, it removes the extra whitespace on the left on search inputs
 ----------------------------------------------------------------------------------------------------*/
-
 input,
 label,
 select,

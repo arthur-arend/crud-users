@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from "react-router-dom";
 import { useUsers } from '../../contexts/users';
@@ -9,9 +9,19 @@ import Header from '../../components/Header';
 import './styles.scss';
 
 function Home() {
-const { listUsers, setListUsers, user, setUser, isModalVisible } = useUsers();
+const { listUsers, setListUsers, user, setUser, isModalVisible, currentPage, setCurrentPage } = useUsers();
 const [ search, setSearch ] = useState('');
 const navigate = useNavigate();
+
+useEffect(() => {
+  const intersectionObserver = new IntersectionObserver(entries => {
+    if (entries.some(entry => entry.isIntersecting)) {
+      setCurrentPage((currentPage) => currentPage + 1);
+    }
+  })
+  intersectionObserver.observe(document.querySelector('#sentinela'));
+  return () => intersectionObserver.disconnect();
+}, []);
 
 
 const listUsersFiltered = listUsers.filter((filtered) => (filtered.name).toLocaleLowerCase().includes(search.toLocaleLowerCase()))
@@ -32,6 +42,7 @@ const listUsersFiltered = listUsers.filter((filtered) => (filtered.name).toLocal
           <Card key={eachUser.id} eachUser={eachUser} />
         ))
         : <p>Carregando</p>}
+        <li id="sentinela" />
       </div>
     </div>
   );
