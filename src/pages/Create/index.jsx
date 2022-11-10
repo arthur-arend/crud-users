@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-// import { Container } from './styles';
+import './styles.scss';
 import Header from '../../components/Header';
 
 function Create() {
@@ -35,16 +35,21 @@ const  createUser = () => {
 }
 
   return (
-    <main>
+    <div className='create__content'>
       <Header text={'Cadastro'}/>
-      <button onClick={() => navigate(-1)}>Voltar</button>
-      <input placeholder="Nome" type="text" onChange={(e) => setUser({...user, name: e.target.value})}/>
-      <input placeholder="Data de Nascimento" type="date" id="birthday" name="birthday" min="1900-01-01" max="2022-12-31" onChange={(e) => setUser({...user, birthdate: e.target.value})}/>
-      <input placeholder="E-mail" type="email" onChange={(e) => setUser({...user, email: e.target.value})}/>
-      <input placeholder="Senha" type="password" onChange={(e) => setUser({ ...user, password: e.target.value})}/>
-      <button onClick={() => createUser()}>Salvar</button>
+      <div className='create__actions'>
+        <button onClick={() => navigate(-1)}>Voltar</button>
+      </div>
+      <div className="create__info">
+        <input placeholder="Nome" type="text" onChange={(e) => setUser({...user, name: e.target.value})}/>
+        <label>Data de Nascimento</label>
+        <input placeholder="Data de Nascimento" type="date" id="birthday" name="birthday" min="1900-01-01" max="2022-12-31" onChange={(e) => setUser({...user, birthdate: e.target.value})}/>
+        <input placeholder="E-mail" type="email" onChange={(e) => setUser({...user, email: e.target.value})}/>
+        <input placeholder="Senha" type="password" onChange={(e) => setUser({ ...user, password: e.target.value})}/>
+        <button onClick={() => createUser()}>Salvar</button>
+      </div>
       
-    </main>
+    </div>
   );
 }
 

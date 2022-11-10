@@ -27,8 +27,8 @@ function Card(props) {
         <p>Matrícula: {eachUser.id}</p>
       </div>
       <div className="content__action">
-        <button onClick={() => handleDelete(eachUser)}>Deletar</button>
-        <button onClick={() => handleEdit(eachUser)}>Editar</button>
+        <button onClick={() => handleEdit(eachUser)} className="content__edit">Editar</button>
+        <button onClick={() => handleDelete(eachUser)} className="content__delete">Deletar</button>
       </div>
     </div>
   );

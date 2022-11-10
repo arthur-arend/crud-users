@@ -18,18 +18,26 @@ function Modal() {
     setUser('');
   }
 
+  const updateUser = () => {
+
+  }
+
   return (
-    <div className='modal__content'>
-      <section>
-      <button onClick={() => closeModal()}>Fechar</button>
+    <div className='modal__background'>
+      <div className='modal__content'>
+      <div className="modal__actions">
+        <button onClick={() => closeModal()}>Fechar</button>
+      </div>
       {user ? 
-      <div className="content">
-       <input placeholder="Nome" type="text" value={user.name} onChange={(e) => setUser({...user, name: e.target.value})}/>
-        <input type="date" id="birthday" name="birthday" value={user.birthdate} onChange={(e) => setUser({...user, birthdate: e.target.value})}/>
-        <input type="email" value={user.email} onChange={(e) => setUser({...user, email: e.target.value})}/>
-        <input type="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value})}/>
-      </div> :  'Vazio'}
-      </section>   
+        <div className="modal__info">
+          <input placeholder="Nome" type="text" value={user.name} onChange={(e) => setUser({...user, name: e.target.value})}/>
+          <label>Data de Nascimento</label>
+          <input type="date" id="birthday" name="birthday" value={user.birthdate} onChange={(e) => setUser({...user, birthdate: e.target.value})}/>
+          <input type="email" value={user.email} onChange={(e) => setUser({...user, email: e.target.value})}/>
+          <input type="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value})}/>
+          <button onClick={() => updateUser()}>Salvar</button>
+          </div> :  'Vazio'}
+          </div>   
     </div>
   );
 }

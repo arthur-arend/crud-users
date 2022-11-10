@@ -23,18 +23,15 @@ const listUsersFiltered = listUsers.filter((filtered) => (filtered.name).toLocal
 
       {isModalVisible ? <Modal toEdit={user}/>: null}
       <div className="home__actions">
-        <button onClick={() => navigate('/create')}>Cadastrar</button>
+        <button onClick={() => navigate('/create')}>Cadastrar Novos Usuários</button>
         <input  type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Filtrar Usuários"/>
       </div>
-      <div className="home__table">
-        
-        <div className="home__info">
-          {listUsers ? 
-          listUsersFiltered.map((eachUser) => (
-            <Card key={eachUser.id} eachUser={eachUser} />
-          ))
-          : <p>Carregando</p>}
-          </div>
+      <div className="home__table">       
+        {listUsers ? 
+        listUsersFiltered.map((eachUser) => (
+          <Card key={eachUser.id} eachUser={eachUser} />
+        ))
+        : <p>Carregando</p>}
       </div>
     </div>
   );
