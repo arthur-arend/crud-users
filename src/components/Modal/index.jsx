@@ -5,7 +5,7 @@ import { useUsers } from '../../contexts/users';
 import './styles.scss';
 
 function Modal() {
-  const { setIsModalVisible, user, setUser } = useUsers();
+  const { setIsModalVisible, user, setUser, setRefresh, refresh } = useUsers();
 
   useEffect(() => {
     axios.get(`http://localhost:3000/users/${user.id}`).then((response) => {
@@ -18,15 +18,27 @@ function Modal() {
     setUser('');
   }
 
-  const updateUser = () => {
+  const resolveReq = () => {
+    setRefresh(!refresh);
+    closeModal();
+  }
 
+  const updateUser = () => {
+    if ( user.id && user.name && user.email && user.birthdate && user.password ) {
+      axios.put(`http://localhost:3000/users/${user.id}`, user).then((response) => {
+        alert(`Usuário ${response.data.name} editado`)
+        resolveReq();
+      })
+    } else {
+      alert("Preencha todos os campos")
+    }
   }
 
   return (
     <div className='modal__background'>
       <div className='modal__content'>
       <div className="modal__actions">
-        <button onClick={() => closeModal()}>Fechar</button>
+        <button onClick={() => closeModal()}>X</button>
       </div>
       {user ? 
         <div className="modal__info">

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useUsers } from '../../contexts/users';
 
 import './styles.scss';
 import Header from '../../components/Header';
 
 function Create() {
+const {  refresh, setRefresh } = useUsers();
 const [user, setUser] = useState({
   id: '',
   name: '',
@@ -23,11 +25,18 @@ useEffect(() =>{
 }, [])
 
 
+const resolveReq = () => {
+  setRefresh(!refresh)
+  navigate(-1)
+}
+
+
 const  createUser = () => {
   if ( user.id && user.name && user.email && user.birthdate && user.password ) {
     axios.post('http://localhost:3000/users/', user).then((response) => {
       alert(`Usuário ${response.data.name} cadastrado`)
-      navigate(-1)
+      resolveReq()
+      
     })
   } else {
     alert("Preencha todos os campos")

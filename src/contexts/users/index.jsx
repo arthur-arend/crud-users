@@ -8,12 +8,13 @@ export const UsersProvider = ({ children }) => {
   const [ listUsers, setListUsers ] = useState([]);
   const [ user, setUser ] = useState({});
   const [ isModalVisible, setIsModalVisible ] = useState(false);
+  const [refresh, setRefresh ] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:3000/users').then((response) => {
       setListUsers(response.data)
   })
-  }, []) 
+  }, [refresh]) 
 
   return (
     <UsersContext.Provider
@@ -23,7 +24,7 @@ export const UsersProvider = ({ children }) => {
         user, 
         setUser, 
         isModalVisible, 
-        setIsModalVisible
+        setIsModalVisible, refresh, setRefresh
       }}
     >
       {children}
@@ -37,7 +38,7 @@ export const useUsers = () => {
   if (!context)
     throw new Error("useUsers must be used within a UsersContext.");
 
-  const { listUsers, setListUsers, user, setUser, isModalVisible, setIsModalVisible } = context;
+  const { listUsers, setListUsers, user, setUser, isModalVisible, setIsModalVisible, refresh, setRefresh } = context;
 
   return {
     listUsers, 
@@ -45,7 +46,7 @@ export const useUsers = () => {
     user, 
     setUser, 
     isModalVisible, 
-    setIsModalVisible
+    setIsModalVisible, refresh, setRefresh
   };
 };
 
