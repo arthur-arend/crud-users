@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "id": 1667942257041,
+      "name": "Karen",
+      "birthdate": "1990-06-04",
+      "email": "asdasd@email.com",
+      "password": "123456"
+    },
+    {
+      "id": 1667948150025,
+      "name": "Julia",
+      "birthdate": "1990-06-04",
+      "email": "dasdasd",
+      "password": "123456"
+    },
+    {
+      "id": 1667959110305,
+      "name": "Arthur",
+      "birthdate": "1990-06-04",
+      "email": "arthur.nox@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 1668016825997,
+      "name": "Fabio",
+      "birthdate": "1972-11-20",
+      "email": "dasdasdsd",
+      "password": "123456"
+    },
+    {
+      "id": 1668061291544,
+      "name": "João Paulo",
+      "birthdate": "4444-04-04",
+      "email": "artdasdusahudh@emasd.com",
+      "password": "123456"
+    },
+    {
+      "id": 1668061316998,
+      "name": "Carlos",
+      "birthdate": "7777-07-07",
+      "email": "dasudhaushdu@email.com",
+      "password": "7894526"
+    },
+    {
+      "id": 1668061351109,
+      "name": "Pedro",
+      "birthdate": "0444-04-04",
+      "email": "4sdusad@gmail.com",
+      "password": "7984526321"
+    },
+    {
+      "id": 1668061370933,
+      "name": "Paula",
+      "birthdate": "7777-07-07",
+      "email": "aloooo@asmd.com",
+      "password": "456465"
+    },
+    {
+      "id": 1668061447180,
+      "name": "Vilma",
+      "birthdate": "4545-05-04",
+      "email": "asrrr@email.com",
+      "password": "45612312"
+    },
+    {
+      "id": 1668061468196,
+      "name": "Aristeu",
+      "birthdate": "6456-05-04",
+      "email": "asdasd",
+      "password": "132456"
+    },
+    {
+      "id": 1668061487875,
+      "name": "Murilo",
+      "birthdate": "6456-05-04",
+      "email": "asdasd",
+      "password": "654654"
+    }
+  ]
+}
